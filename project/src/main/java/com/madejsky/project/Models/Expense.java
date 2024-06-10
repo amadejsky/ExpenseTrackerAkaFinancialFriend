@@ -17,7 +17,7 @@ public class Expense {
 
     @Enumerated(EnumType.STRING)
     @Column(name="category")
-    @NotBlank(message = "Expense category is obligatory in analytics purpose!")
+    @NotNull(message = "Expense category is obligatory in analytics purpose!")
     private Category category;
 
     @Column(name="description")

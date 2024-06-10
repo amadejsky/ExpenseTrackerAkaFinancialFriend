@@ -2,7 +2,7 @@ spring:
   h2:
     console:
       enabled: true
-      path: '/console'
+      path: '/h2-console'
   datasource:
     url: 'jdbc:h2:file:./storage-db'
   jpa:
