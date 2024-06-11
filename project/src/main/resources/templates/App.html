@@ -17,6 +17,34 @@
         width:100vw;
         height:90vh;
         background-color: whitesmoke;
+        margin-top: -10vh;
+    }
+    .formUser{
+        width:40vw;
+        height:31vh;
+        padding: 4vw;
+        margin-top: 20vh;
+        margin-left:21vw;
+        display: inline-block;
+        text-align: left;
+        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+    }
+    .form-control{
+        width:50%;
+        border: 7px outset #6d214f;
+        display: inline-block;
+        text-align: right;
+    }
+    .input{
+        display: inline-block;
+        text-align: right;
+        border: 7px outset #6d214f;
+    }
+    .amount{
+        font-size: larger;
+        border: 7px outset #6d214f;
     }
     .navbar-brand{
         color: #F0F0F0;
@@ -25,7 +53,7 @@
         color: #F0F0F0;
     }
 </style>
-<body class="d-flex flex-column min-vh-100">
+<body class="">
 <nav class="navbar navbar-expand-lg" style="background-color: #0A005A">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Your Finance Friend!</a>
@@ -49,9 +77,10 @@
 </nav>
 <div class="body">
     <!--/*@thymesVar id="expense" type="com.madejsky.project.Models.Expense"*/-->
-    <form action="#" th:action="@{/addExpense}" th:object="${expense}" method="post">
-        <label for="amount" class="col-form-label">Cost amount:</label>
-        <input type="number" th:field="*{amount}" id="amount" placeholder="Category">
+    <form action="#" th:action="@{/addExpense}" th:object="${expense}" method="post" class="formUser">
+        <label for="amount" class="col-form-label">Cost:</label>
+        <input class="amount" type="number" th:field="*{amount}" id="amount" placeholder="Cost amount">
+        <br>
         <label for="category" class="col-form-label">Select expense category:</label>
         <select th:field="*{category}" class="form-control" id="category">
             <option value="EDUCATION">Education</option>
@@ -61,8 +90,10 @@
             <option value="PARKINGTAXES">Parking taxes</option>
             <option value="CULTURE">Culture</option>
         </select>
-        <input type="text" th:field="*{description}" id="description" placeholder="Description">
+        <br>
         <label for="description" class="col-form-label">Enter desired description (optional)</label>
+        <input class="input" type="text" th:field="*{description}" id="description" placeholder="Description">
+        <br>
         <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
 </div>
