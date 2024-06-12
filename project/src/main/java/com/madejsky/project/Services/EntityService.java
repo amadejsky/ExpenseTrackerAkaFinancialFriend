@@ -1,13 +1,16 @@
 package com.madejsky.project.Services;
 
 
+import com.madejsky.project.Exceptions.RecordNotFoundException;
 import com.madejsky.project.Models.Expense;
 import com.madejsky.project.Repository.EntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EntityService {
@@ -25,5 +28,14 @@ public class EntityService {
         return result;
         else
             return new ArrayList<Expense>();
+    }
+
+    public void deleteExpenseById(Long id) throws RecordNotFoundException {
+        Optional<Expense> expense = repository.findById(id);
+
+        if(expense.isPresent())
+            repository.deleteById(id);
+        else
+            throw new RecordNotFoundException("[SERVICE ERROR] No expense found");
     }
 }

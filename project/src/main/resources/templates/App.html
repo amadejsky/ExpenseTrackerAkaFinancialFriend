@@ -21,7 +21,7 @@
     }
     .formUser{
         width:40vw;
-        height:31vh;
+        height:auto;
         padding: 4vw;
         margin-top: 20vh;
         margin-left:21vw;
@@ -32,7 +32,8 @@
         -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
     }
     .form-control{
-        width:50%;
+        height:70%;
+        width:40%;
         border: 7px outset #6d214f;
         display: inline-block;
         text-align: right;
@@ -52,6 +53,28 @@
     .navbar-nav .nav-link{
         color: #F0F0F0;
     }
+    @media (max-width: 1420px) {
+        .formUser{
+            font-size: 1vw;
+
+        }
+        .form-control{
+            height:60%;
+            width:40%;
+        }
+
+    }
+    @media (max-width: 800px) {
+        .formUser{
+            font-size: 1vw;
+
+        }
+        .form-control{
+            height:30%;
+            width:40%;
+        }
+
+    }
 </style>
 <body class="">
 <nav class="navbar navbar-expand-lg" style="background-color: #0A005A">
@@ -69,6 +92,9 @@
                     <a class="nav-link" style="color: #6D214F" href="/app">App</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/report">Report</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
             </ul>
@@ -79,7 +105,7 @@
     <!--/*@thymesVar id="expense" type="com.madejsky.project.Models.Expense"*/-->
     <form action="#" th:action="@{/addExpense}" th:object="${expense}" method="post" class="formUser">
         <label for="amount" class="col-form-label">Cost:</label>
-        <input class="amount" type="number" th:field="*{amount}" id="amount" placeholder="Cost amount">
+        <input class="amount form-control" type="number" th:field="*{amount}" id="amount" placeholder="Cost amount">
         <br>
         <label for="category" class="col-form-label">Select expense category:</label>
         <select th:field="*{category}" class="form-control" id="category">
@@ -92,7 +118,7 @@
         </select>
         <br>
         <label for="description" class="col-form-label">Enter desired description (optional)</label>
-        <input class="input" type="text" th:field="*{description}" id="description" placeholder="Description">
+        <input class="input form-control" type="text" th:field="*{description}" id="description" placeholder="Description">
         <br>
         <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
