@@ -71,7 +71,6 @@ public class EntityServiceTest {
         verify(repository, times(1)).findById(1L);
         verify(repository, times(1)).deleteById(1L);
     }
-
     @Test
     public void testDeleteNonExistingExpenseById() {
         when(repository.findById(1L)).thenReturn(Optional.empty());
@@ -80,6 +79,25 @@ public class EntityServiceTest {
         verify(repository, times(1)).findById(1L);
         verify(repository, never()).deleteById(anyLong());
     }
+    @Test
+    public void testAddExpenseWithInvalidData() {
+        Expense expenseToAdd = new Expense();
+        expenseToAdd.setAmount(-100.0);
+        expenseToAdd.setCategory(Category.EDUCATION);
+
+        assertThrows(IllegalArgumentException.class, () -> service.addExpense(expenseToAdd));
+        verify(repository, never()).save(any(Expense.class));
+    }
+    @Test
+    public void testAddExpenseWithoutAmount() {
+        Expense expenseToAdd = new Expense();
+        expenseToAdd.setAmount(null);
+        expenseToAdd.setCategory(Category.EDUCATION);
+
+        assertThrows(IllegalArgumentException.class, () -> service.addExpense(expenseToAdd));
+        verify(repository, never()).save(any(Expense.class));
+    }
+
 
 //    @Test
 //    public void testDeleteExpenseById() {

@@ -18,9 +18,16 @@ public class EntityService {
     @Autowired
     EntityRepository repository;
 
-    public Expense addExpense(Expense expense){
+    public Expense addExpense(Expense expense) {
+        if (expense.getAmount() == null) {
+            throw new IllegalArgumentException("[SERVICE ERROR] --Expense amount cannot be null!");
+        }
+        if (expense.getAmount() < 0) {
+            throw new IllegalArgumentException("[SERVICE ERROR] --Expense amount cannot be negative!");
+        }
         return repository.save(expense);
     }
+
 
     public List<Expense> getAll(){
         List<Expense> result = (List<Expense>) repository.findAll();
