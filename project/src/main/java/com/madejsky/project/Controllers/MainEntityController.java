@@ -29,10 +29,7 @@ public class MainEntityController {
             model.addAttribute("expense", new Expense());
         return "App";
     }
-    @RequestMapping(path="/about")
-        public String aboutPage(Model model){
-            return "About";
-    }
+
 
     @RequestMapping(path = "/addExpense", method= RequestMethod.POST)
     public String addExpense(Expense expense){

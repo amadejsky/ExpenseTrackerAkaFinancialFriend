@@ -27,6 +27,11 @@ public class Expense {
 
     }
 
+    public Expense(Double amount, Category category) {
+        this.amount = amount;
+        this.category = category;
+    }
+
     public Long getId() {
         return id;
     }
@@ -58,7 +63,6 @@ public class Expense {
     public void setDescription(String description) {
         this.description = description;
     }
-
     @Override
     public String toString() {
         return "Expense{" +
